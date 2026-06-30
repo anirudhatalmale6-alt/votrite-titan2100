@@ -24,19 +24,18 @@ jobs:
         run: |
           nuget install iTextSharp -Version 5.5.13.3 -OutputDirectory packages
           nuget install EPPlus -Version 4.5.3.3 -OutputDirectory packages
-          nuget install GemBox.Spreadsheet -Version 49.0.35.1335 -OutputDirectory packages
 
       - name: Fix assembly references
         shell: powershell
         run: |
           $content = Get-Content VotRite.csproj -Raw
-          # Fix EPPlus
+          # Fix EPPlus to NuGet path
           $content = $content -replace '<HintPath>.*?EPPlus\.dll</HintPath>', '<HintPath>packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>'
-          # Fix iTextSharp
-          $content = $content -replace '<HintPath>.*?itextsharp\.dll</HintPath>', '<HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>'
-          # Fix GemBox
-          $content = $content -replace '<HintPath>.*?GemBox\.Spreadsheet\.dll</HintPath>', '<HintPath>packages\GemBox.Spreadsheet.49.0.35.1335\lib\net35\GemBox.Spreadsheet.dll</HintPath>'
-          # Fix Interop Excel - remove this reference, add via NuGet
+          # Fix iTextSharp to lib folder
+          $content = $content -replace '<HintPath>.*?itextsharp\.dll</HintPath>', '<HintPath>lib\itextsharp.dll</HintPath>'
+          # Fix GemBox to lib folder
+          $content = $content -replace '<HintPath>.*?GemBox\.Spreadsheet\.dll</HintPath>', '<HintPath>lib\GemBox.Spreadsheet.dll</HintPath>'
+          # Fix Interop Excel - use MicrosoftOfficeCore NuGet package
           $content = $content -replace '<HintPath>.*?Interop\.Microsoft\.Office\.Interop\.Excel\.dll</HintPath>', '<HintPath>packages\MicrosoftOfficeCore.15.0.0\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>'
           Set-Content VotRite.csproj $content
 
