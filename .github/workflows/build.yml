@@ -16,6 +16,15 @@ jobs:
           $content = $content -replace '<TargetFrameworkProfile />', ''
           Set-Content VotRite.csproj $content
 
+      - name: Download CommonFiles
+        shell: powershell
+        run: |
+          gh release download v24.2 --pattern CommonFiles.zip --repo anirudhatalmale6-alt/votrite-titan2100
+          mkdir -p bin\Debug
+          Expand-Archive CommonFiles.zip -DestinationPath bin\Debug -Force
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
 
