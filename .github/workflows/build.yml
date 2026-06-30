@@ -24,6 +24,7 @@ jobs:
         run: |
           nuget install iTextSharp -Version 5.5.13.3 -OutputDirectory packages
           nuget install EPPlus -Version 4.5.3.3 -OutputDirectory packages
+          nuget install Microsoft.Office.Interop.Excel -Version 15.0.4795.1001 -OutputDirectory packages
 
       - name: Fix assembly references
         shell: powershell
@@ -35,8 +36,8 @@ jobs:
           $content = $content -replace '<HintPath>.*?itextsharp\.dll</HintPath>', '<HintPath>lib\itextsharp.dll</HintPath>'
           # Fix GemBox to lib folder
           $content = $content -replace '<HintPath>.*?GemBox\.Spreadsheet\.dll</HintPath>', '<HintPath>lib\GemBox.Spreadsheet.dll</HintPath>'
-          # Fix Interop Excel - use MicrosoftOfficeCore NuGet package
-          $content = $content -replace '<HintPath>.*?Interop\.Microsoft\.Office\.Interop\.Excel\.dll</HintPath>', '<HintPath>packages\MicrosoftOfficeCore.15.0.0\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>'
+          # Fix Interop Excel
+          $content = $content -replace '<HintPath>.*?Interop\.Microsoft\.Office\.Interop\.Excel\.dll</HintPath>', '<HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>'
           Set-Content VotRite.csproj $content
 
       - name: Restore NuGet packages
