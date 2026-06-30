@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CognitiveServices.Speech.1.22.0\build\Microsoft.CognitiveServices.Speech.props" Condition="Exists('packages\Microsoft.CognitiveServices.Speech.1.22.0\build\Microsoft.CognitiveServices.Speech.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20C0375F-287B-4926-B0E8-0973580065AA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VotRite</RootNamespace>
+    <AssemblyName>VotRite</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;WINDOWS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\..\..\Greg Garson\Order Management Project\Order Manager\bin\Debug\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=49.0.0.1335, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Admin\Downloads\GBS49v1335\net35\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.10.0.25332, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.10.0\lib\net40\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.10.0.25333, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.10.0\lib\net40\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.10.0.25333, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.10.0\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.10.0.25331, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Core.1.10.0\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.10.0.25332, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.10.0\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Translate.v2, Version=1.55.0.875, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Translate.v2.1.55.0.875\lib\net40\Google.Apis.Translate.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\..\Greg Garson\Order Management Project\Order Manager\obj\Debug\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\Greg Garson\Order Management Project\Order Manager\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\MicrosoftOfficeCore.15.0.0\lib\net35\Office.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.12.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>packages\PdfiumViewer.2.12.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Core.1.0.109.2\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.EF6.1.0.109.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Linq.1.0.109.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text="Product:	VotRite&#xA;Module:  ${FileName}&#xA;Author:  ${AuthorName}&#xA;Created: ${Date}&#xA;&#xA;Copyright (c) ${Year} - ${CopyrightHolder} All rights reserved.&#xA;&#xA;THIS PRODUCT INCLUDES SOFTWARE AS A PART OF VOTRITE VOTING &#xA;SYSTEM DEVELOPED AT VOTRITE LLC (http://www.votrite.com).&#xA;THE SOURCE CODE FOR THIS PRODUCT IS SUBJECT TO THE VOTRITE LLC &#xA;LICENSE. NO ANY PORTION OF THIS PRODUCT OR SOURCE CODE CAN BE &#xA;REDISTRIBUTED UNDER ANY CIRCUMSTANCES.&#xA;" inheritsSet="Apache2License" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="Controllers\RankingChoiceController.cs" />
+    <Compile Include="Controllers\RemotePollWorkerController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
+    <Compile Include="DBClasses\MachineConfig.cs" />
+    <Compile Include="JimForms\exitoptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\exitoptions.Designer.cs">
+      <DependentUpon>exitoptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\resetoptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\resetoptions.Designer.cs">
+      <DependentUpon>resetoptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\SupervisorCred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\SupervisorCred.Designer.cs">
+      <DependentUpon>SupervisorCred.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\PollworkerCred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\PollworkerCred.Designer.cs">
+      <DependentUpon>PollworkerCred.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\AdminAccessCred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\AdminAccessCred.Designer.cs">
+      <DependentUpon>AdminAccessCred.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\AdminCred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\AdminCred.Designer.cs">
+      <DependentUpon>AdminCred.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\audit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\BallotMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\BallotMode.Designer.cs">
+      <DependentUpon>BallotMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm_Ballots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm_Ballots.Designer.cs">
+      <DependentUpon>ConfigForm_Ballots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\BallotsListDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\BallotsListDisplay.Designer.cs">
+      <DependentUpon>BallotsListDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\CloseOrReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\CloseOrReset.Designer.cs">
+      <DependentUpon>CloseOrReset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm_Machine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\ConfigForm_Machine.Designer.cs">
+      <DependentUpon>ConfigForm_Machine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\F_CallHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\F_CallHelp.Designer.cs">
+      <DependentUpon>F_CallHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\F_HelpSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\F_HelpSetting.Designer.cs">
+      <DependentUpon>F_HelpSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\F_Language.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\F_Language.Designer.cs">
+      <DependentUpon>F_Language.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\F_SpeechRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\F_SpeechRate.Designer.cs">
+      <DependentUpon>F_SpeechRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComPort.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\ConfirmController.cs" />
+    <Compile Include="Controllers\CountiesController.cs" />
+    <Compile Include="Controllers\CountyController.cs" />
+    <Compile Include="Controllers\PartiesController.cs" />
+    <Compile Include="Controllers\BallotOverviewController.cs" />
+    <Compile Include="Controllers\SettingToolsController.cs" />
+    <Compile Include="Controllers\SlatesController.cs" />
+    <Compile Include="Controllers\SpeechRateController.cs" />
+    <Compile Include="Controllers\TextSizeController.cs" />
+    <Compile Include="Controllers\WriteinController.cs" />
+    <Compile Include="Controllers\PinpadController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\ThankyouController.cs" />
+    <Compile Include="DBClasses\Ballot.cs" />
+    <Compile Include="DBClasses\Candidate.cs" />
+    <Compile Include="DBClasses\Constants.cs" />
+    <Compile Include="DBClasses\Contest.cs" />
+    <Compile Include="DBClasses\County.cs" />
+    <Compile Include="DBClasses\Definition\CountyDefinition.cs" />
+    <Compile Include="DBClasses\Helper.cs" />
+    <Compile Include="DBClasses\Locale.cs" />
+    <Compile Include="DBClasses\LocaleField.cs" />
+    <Compile Include="DBClasses\Party.cs" />
+    <Compile Include="DBClasses\Proposition.cs" />
+    <Compile Include="DBClasses\Race.cs" />
+    <Compile Include="DBClasses\RaceViewOptions.cs" />
+    <Compile Include="DBClasses\Slate.cs" />
+    <Compile Include="DBClasses\Tenant.cs" />
+    <Compile Include="DBClasses\Users.cs" />
+    <Compile Include="DBClasses\Definition\PartyDefinition.cs" />
+    <Compile Include="DBClasses\Definition\SlateDefinition.cs" />
+    <Compile Include="Forms\FormHelper.cs" />
+    <Compile Include="Forms\IdentifyTenantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IdentifyTenantForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HardCounter.cs" />
+    <Compile Include="HardPinPad.cs" />
+    <Compile Include="JimForms\MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\RecordReportPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\RecordReportPrint.Designer.cs">
+      <DependentUpon>RecordReportPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\ReviewScreenSelections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\ReviewScreenSelections.Designer.cs">
+      <DependentUpon>ReviewScreenSelections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\settings_preview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\settings_preview.Designer.cs">
+      <DependentUpon>settings_preview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\supervisorpassreset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\supervisorpassreset.Designer.cs">
+      <DependentUpon>supervisorpassreset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\themes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JimForms\themes.Designer.cs">
+      <DependentUpon>themes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JimForms\UserControls\audit_record.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\ballot_heading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\contest_Prop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\contest_Gen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\contest_Rank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\contest_Slate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\vrSelectionPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JimForms\UserControls\vrSelectionPreview.Designer.cs">
+      <DependentUpon>vrSelectionPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConfirmModel.cs" />
+    <Compile Include="Models\CountiesModel.cs" />
+    <Compile Include="Models\CountyModel.cs" />
+    <Compile Include="Models\PartiesModel.cs" />
+    <Compile Include="Models\BallotOverviewModel.cs" />
+    <Compile Include="Models\RankingChoiceModel.cs" />
+    <Compile Include="Models\RemotePollWorkerModel.cs" />
+    <Compile Include="Models\ResultsModel.cs" />
+    <Compile Include="Models\SettingToolsModel.cs" />
+    <Compile Include="Models\SlatesModel.cs" />
+    <Compile Include="Models\SpeechRateModel.cs" />
+    <Compile Include="Models\TextSizeModel.cs" />
+    <Compile Include="Models\WriteinModel.cs" />
+    <Compile Include="Models\PinpadModel.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
+    <Compile Include="Models\ThankyouModel.cs" />
+    <Compile Include="MultiPagePrinting.cs" />
+    <Compile Include="PinPad.cs" />
+    <Compile Include="PrinterHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
+    <Compile Include="taskbar.cs" />
+    <Compile Include="TSCLIB_DLL.cs" />
+    <Compile Include="UI\VrDropDown.cs" />
+    <Compile Include="Util\ExcelExport.cs" />
+    <Compile Include="Util\HearingModeControl.cs" />
+    <Compile Include="Util\ImageEncryptor.cs" />
+    <Compile Include="Util\Logger.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Util\Crypto.cs" />
+    <Compile Include="Util\NumberToText.cs" />
+    <Compile Include="Util\printingfile.cs" />
+    <Compile Include="Util\RawPrinterHelper.cs" />
+    <Compile Include="Views\ConfirmView.cs" />
+    <Compile Include="Views\CountiesView.cs" />
+    <Compile Include="Views\CountyView.cs" />
+    <Compile Include="Views\MassProposition.cs" />
+    <Compile Include="Views\PartiesView.cs" />
+    <Compile Include="Views\BallotOverviewView.cs" />
+    <Compile Include="Views\RankingChoiceView.cs" />
+    <Compile Include="Views\RemotePollWorkerView.cs" />
+    <Compile Include="Views\ResultsView.cs" />
+    <Compile Include="Views\SettingToolsView.cs" />
+    <Compile Include="Views\SlatesView.cs" />
+    <Compile Include="Views\SpeechRateView.cs" />
+    <Compile Include="Views\TextSizeView.cs" />
+    <Compile Include="Views\WriteinView.cs" />
+    <Compile Include="Views\ReviewView.cs" />
+    <Compile Include="Views\PinPadView.cs" />
+    <Compile Include="Views\ThankyouView.cs" />
+    <Compile Include="Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppManager.cs" />
+    <Compile Include="MVC\Mvc.cs" />
+    <Compile Include="Driver.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="DefinitionParser.cs" />
+    <Compile Include="UI\ScreenObject.cs" />
+    <Compile Include="UI\VrButton.cs" />
+    <Compile Include="UI\VrContainer.cs" />
+    <Compile Include="UI\VrImage.cs" />
+    <Compile Include="UI\VrLabel.cs" />
+    <Compile Include="UI\VrScreen.cs" />
+    <Compile Include="UI\VrScroll.cs" />
+    <Compile Include="UI\VrSelection.cs" />
+    <Compile Include="DBClasses\Definition\ScreenDefinition.cs" />
+    <Compile Include="Models\ScreenModel.cs" />
+    <Compile Include="DBClasses\Definition\BallotDefinition.cs" />
+    <Compile Include="DBClasses\Definition\ContestDefinition.cs" />
+    <Compile Include="DBClasses\Definition\PinPadDefinition.cs" />
+    <Compile Include="DBClasses\Definition\PinPadMenuDefinition.cs" />
+    <Compile Include="PinPadMenuItem.cs" />
+    <Compile Include="Util\IOHandler.cs" />
+    <Compile Include="Controllers\ScreenController.cs" />
+    <Compile Include="Models\InitialModel.cs" />
+    <Compile Include="Views\InitialView.cs" />
+    <Compile Include="Controllers\InitialController.cs" />
+    <Compile Include="Models\LocaleModel.cs" />
+    <Compile Include="Controllers\LocaleController.cs" />
+    <Compile Include="Views\LocaleView.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Controllers\ContestController.cs" />
+    <Compile Include="Models\ContestModel.cs" />
+    <Compile Include="Views\ContestView.cs" />
+    <Compile Include="Views\ExpiredView.cs" />
+    <Compile Include="Models\ExpiredModel.cs" />
+    <Compile Include="AppAgent.cs" />
+    <Compile Include="DBClasses\Definition\DataDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bin\Debug\data\votrite.s3db" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Ballot_Edit\data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\CommonFiles\definition\screens\default_screen\parties.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\Picture2.png" />
+    <None Include="Resources\Picture1.png" />
+    <None Include="Resources\loginBg.JPG" />
+    <None Include="Resources\loginBg1.JPG" />
+    <None Include="Resources\splashBG.png" />
+    <None Include="Resources\splashBG - Copy.png" />
+    <None Include="Resources\initialBG1.png" />
+    <None Include="bin\CommonFiles\graphics\option_dark_a_b.png" />
+    <None Include="Resources\initialBG_f.png" />
+    <None Include="Resources\menuBG.JPG" />
+    <None Include="Resources\menuBG1.JPG" />
+    <None Include="Resources\submenuBG.JPG" />
+    <None Include="Resources\connect.JPG" />
+    <None Include="Resources\button_green.jpg" />
+    <None Include="Resources\button_red.jpg" />
+    <None Include="Resources\button_red1.jpg" />
+    <None Include="Resources\initialBG_f1.png" />
+    <Content Include="x64\pdfium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\pdfium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\IdentifyTenantForm2.resx">
+      <DependentUpon>IdentifyTenantForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\exitoptions.resx">
+      <DependentUpon>exitoptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\resetoptions.resx">
+      <DependentUpon>resetoptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\SupervisorCred.resx">
+      <DependentUpon>SupervisorCred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\PollworkerCred.resx">
+      <DependentUpon>PollworkerCred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\AdminAccessCred.resx">
+      <DependentUpon>AdminAccessCred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\AdminCred.resx">
+      <DependentUpon>AdminCred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\audit.resx" />
+    <EmbeddedResource Include="JimForms\BallotMode.resx">
+      <DependentUpon>BallotMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\ConfigForm_Ballots.resx">
+      <DependentUpon>ConfigForm_Ballots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\BallotsListDisplay.resx">
+      <DependentUpon>BallotsListDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\CloseOrReset.resx">
+      <DependentUpon>CloseOrReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\ConfigForm_Machine.resx">
+      <DependentUpon>ConfigForm_Machine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\F_CallHelp.resx">
+      <DependentUpon>F_CallHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\F_HelpSetting.resx">
+      <DependentUpon>F_HelpSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\F_Language.resx">
+      <DependentUpon>F_Language.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\F_SpeechRate.resx">
+      <DependentUpon>F_SpeechRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\RecordReportPrint.resx">
+      <DependentUpon>RecordReportPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\ReviewScreenSelections.resx">
+      <DependentUpon>ReviewScreenSelections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\settings_preview.resx">
+      <DependentUpon>settings_preview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\supervisorpassreset.resx">
+      <DependentUpon>supervisorpassreset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\themes.resx">
+      <DependentUpon>themes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\UserControls\contest_Prop.resx">
+      <DependentUpon>contest_Prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\UserControls\contest_Gen.resx">
+      <DependentUpon>contest_Gen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JimForms\UserControls\vrSelectionPreview.resx">
+      <DependentUpon>vrSelectionPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window.resx">
+      <DependentUpon>Window.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.CognitiveServices.Speech.1.22.0\build\Microsoft.CognitiveServices.Speech.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CognitiveServices.Speech.1.22.0\build\Microsoft.CognitiveServices.Speech.props'))" />
+  </Target>
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+</Project>

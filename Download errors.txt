@@ -1,0 +1,10 @@
+﻿Sorry, there was a problem downloading some files from OneDrive. Please try again.
+
+db.lock - https://onedrive.live.com/?cid=ef1acc629e17b96a&id=EF1ACC629E17B96A%2111681&action=Download&authKey=!ApZFIRA6cTX5jOI
+
+votrite11012019_124937.s3db - https://onedrive.live.com/?cid=ef1acc629e17b96a&id=EF1ACC629E17B96A%219636&action=Download&authKey=!ApZFIRA6cTX5jOI
+
+VotRite.csproj.CopyComplete - https://onedrive.live.com/?cid=ef1acc629e17b96a&id=EF1ACC629E17B96A%219867&action=Download&authKey=!ApZFIRA6cTX5jOI
+
+
+

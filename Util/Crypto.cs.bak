@@ -1,0 +1,123 @@
+// Product:	VotRite
+// Module:  Crypto.cs
+// Author:  Dmitriy Slipak
+// Created: 5/30/2011
+// 
+// Copyright (c) 2011 - VotRite LLC. All rights reserved.
+// 
+// THIS PRODUCT INCLUDES SOFTWARE AS A PART OF VOTRITE VOTING 
+// SYSTEM DEVELOPED AT VOTRITE LLC (http://www.votrite.com).
+// THE SOURCE CODE FOR THIS PRODUCT IS SUBJECT TO THE VOTRITE LLC 
+// LICENSE. NO ANY PORTION OF THIS PRODUCT OR SOURCE CODE CAN BE 
+// REDISTRIBUTED UNDER ANY CIRCUMSTANCES.
+// 
+using System;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
+using System.Runtime.InteropServices;
+
+namespace VotRite.Util
+{
+	public class Crypto
+	{
+		private static Crypto instance;
+		private RijndaelManaged algo;
+        private ASCIIEncoding encoding;
+        private MemoryStream memStream;
+        private CryptoStream cryptoStream;
+        private StreamWriter writer;
+        private StreamReader reader;
+        private byte[] salt;
+
+        private const string secret = "ds281973";
+		
+		public static Crypto Instance
+		{
+			get
+			{
+				if (instance == null) instance = new Crypto();
+				return instance;
+			}
+		}
+		
+        protected Crypto()
+        {
+            algo = new RijndaelManaged();
+            encoding = new ASCIIEncoding();
+            salt = encoding.GetBytes(DateTime.Now.ToString());
+        }
+
+        public string Encrypt(string text)
+        {
+            string encrypted = "";
+
+            try
+            {
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(secret, salt);
+                algo = new RijndaelManaged();
+
+                algo.Key = key.GetBytes(algo.KeySize / 8);
+                algo.IV = key.GetBytes(algo.BlockSize / 8);
+
+                ICryptoTransform encryptor =
+                    algo.CreateEncryptor(algo.Key, algo.IV);
+
+                using (memStream = new MemoryStream())
+                {
+                    using (cryptoStream = new CryptoStream(memStream,
+                        encryptor, CryptoStreamMode.Write))
+                    {
+                        using (writer = new StreamWriter(cryptoStream))
+                            writer.Write(text);
+                    }
+
+                    encrypted = Convert.ToBase64String(memStream.ToArray());
+                }
+            }
+            finally
+            {
+                if (algo != null) algo.Clear();
+            }
+
+            return encrypted;
+        }
+
+        public string Decrypt(string text)
+        {
+            string decrypted = "";
+
+            try
+            {
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(secret, salt);
+                algo = new RijndaelManaged();
+
+                algo.Key = key.GetBytes(algo.KeySize / 8);
+                algo.IV = key.GetBytes(algo.BlockSize / 8);
+
+                ICryptoTransform decryptor =
+                    algo.CreateDecryptor(algo.Key, algo.IV);
+                byte[] decBytes = Convert.FromBase64String(text);
+
+                using (memStream = new MemoryStream(decBytes))
+                {
+                    using (cryptoStream = new CryptoStream(memStream, 
+                        decryptor, CryptoStreamMode.Read))
+                    {
+                        using (reader = new StreamReader(cryptoStream))
+                            decrypted = reader.ReadToEnd();
+                    }
+                }
+            }
+            finally
+            {
+                if (algo != null) algo.Clear();
+            }
+
+            return decrypted;
+        }
+
+		[DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool EncryptFile(string filename);
+	}
+}

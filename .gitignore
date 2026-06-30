@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.suo
+*.user
+*.cache
+packages/
+x64/
+x86/

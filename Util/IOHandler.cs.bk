@@ -1,0 +1,173 @@
+// Product:	VotRite
+// Module:  IOHandler.cs
+// Author:  Dmitriy Slipak
+// Created: 6/5/2011
+// 
+// Copyright (c) 2011 - VotRite LLC. All rights reserved.
+// 
+// THIS PRODUCT INCLUDES SOFTWARE AS A PART OF VOTRITE VOTING 
+// SYSTEM DEVELOPED AT VOTRITE LLC (http://www.votrite.com).
+// THE SOURCE CODE FOR THIS PRODUCT IS SUBJECT TO THE VOTRITE LLC 
+// LICENSE. NO ANY PORTION OF THIS PRODUCT OR SOURCE CODE CAN BE 
+// REDISTRIBUTED UNDER ANY CIRCUMSTANCES.
+// 
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+namespace VotRite.Util
+{
+	public sealed class IOHandler
+	{
+		internal class VarRecord
+        {
+            private enum Record { Var, Word };
+
+            private string var;
+            private string word;
+
+            public string Var { get { return var; } set { var = value; } }
+            public string Word { get { return word; } set { word = value; } }
+
+            public VarRecord(string text) { Parse(text); }
+
+            private void Parse(string text)
+            {
+                char[] sep = { ';' };
+                string[] tokens = text.Split(sep[0]);
+
+                var = tokens[(int)Record.Var].Trim();
+                word = tokens[(int)Record.Word].Trim();
+
+            }
+        }
+
+        public static string GetPathToCommonFile(string path)
+        {
+            return string.Format("..{0}CommonFiles{0}{1}", Global.Instance.SLASH, (string.IsNullOrEmpty(path) ? string.Empty : path));
+        }
+
+        public static bool SaveConfig(string section, string key, string Value)
+        {
+            string pathToCommonFile = IOHandler.GetPathToCommonFile("config" + Global.Instance.SLASH + "votrite.conf");
+            section = "[" + section + "]";
+            key += "=";
+            string str = key + Value;
+            List<string> list = new List<string>();
+            bool flag;
+            try
+            {
+                list.AddRange((IEnumerable<string>)File.ReadAllLines(pathToCommonFile));
+                int startIndex = list.IndexOf(section);
+                int index = startIndex == -1 ? -1 : list.FindIndex(startIndex, (Predicate<string>)(match => match.StartsWith(key)));
+                if (index == -1)
+                {
+                    if (startIndex == -1)
+                    {
+                        list.Add("");
+                        list.Add(section);
+                        list.Add(str);
+                    }
+                    else
+                        list.Insert(startIndex + 1, str);
+                }
+                else
+                    list[index] = str;
+                File.WriteAllLines(pathToCommonFile, list.ToArray());
+                flag = true;
+            }
+            catch (IOException ex)
+            {
+                Logger.Instance.Write((Exception)ex);
+                flag = false;
+            }
+            return flag;
+        }
+
+		public static string ReadConfig(string section, string key)
+        {
+            string value = "";
+            StreamReader reader;
+
+            try
+            {
+                reader = new StreamReader(AppManager.GetPathToCommonFile(
+				                          "config" + 
+				                          Global.Instance.SLASH +
+				                          "votrite.conf"));
+
+                lock (reader)
+                {
+                    string line = "";
+                    bool section_found = false;
+                    bool key_found = false;
+                    string[] tokens;
+                    char[] sep = { '=' };
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line == '[' + section + ']')
+                            section_found = true;
+                        if (section_found)
+                        {
+                            tokens = line.Split(sep[0]);
+                            if (tokens[0] == key)
+                            {
+                                value = tokens[1];
+                                key_found = true;
+                            }
+                        }
+
+                        if (key_found) break;
+                    }
+
+                    reader.Close();
+                }
+
+                reader.Dispose();
+            }
+            catch (IOException e) { Logger.Instance.Write(e); }
+			
+			return value;
+		}
+
+        public static void BackUpDb()
+        {
+			string resultsDbConStr = ReadConfig("System", "ResultsDbConStr");
+			string fileName = DateTime.Now.ToString("ddMMyyyy_HHmmss") + ".s3db";
+			string from = Global.Instance.APP_PATH + resultsDbConStr;
+
+			try {
+				File.Copy(from, Global.Instance.APP_PATH + resultsDbConStr.Replace(".s3db", string.Empty) + fileName, true);
+			}
+			catch(Exception e) { Logger.Instance.Write(e); }
+
+			try {
+				string backupFlashDriveDataPath = ReadConfig("System", "BackupFlashDrivePath") + "data\\";
+				if(!Directory.Exists(backupFlashDriveDataPath))
+					Directory.CreateDirectory(backupFlashDriveDataPath);
+
+				File.Copy(from, backupFlashDriveDataPath + "votrite" + fileName, true);
+			}
+			catch(Exception e) { Logger.Instance.Write(e); }
+        }
+
+		public static void UpdateBackupDbOnFlashDrive() {
+
+			string resultsDbConStr = ReadConfig("System", "ResultsDbConStr");
+			string from = Global.Instance.APP_PATH + resultsDbConStr;
+			string fileName = "votrite.s3db";
+
+			try {
+				string backupFlashDriveDataPath = ReadConfig("System", "BackupFlashDrivePath") + "data\\";
+				if(!Directory.Exists(backupFlashDriveDataPath))
+					Directory.CreateDirectory(backupFlashDriveDataPath);
+
+				File.Copy(from, backupFlashDriveDataPath + fileName, true);
+			}
+			catch(Exception e) { Logger.Instance.Write(e); }
+		}
+	}
+}

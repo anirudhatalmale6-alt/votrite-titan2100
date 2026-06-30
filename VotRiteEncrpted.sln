@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotRite", "VotRite.csproj", "{20C0375F-287B-4926-B0E8-0973580065AA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Votrite23", "..\Votrite23\Votrite23.vdproj", "{0BB042EF-511D-42E8-A821-D1B280AE5650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotriteSpeech", "..\VotriteSpeech\VotriteSpeech.csproj", "{B6431590-2EB2-4377-BEA3-7EAB2D668D23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotriteSpeechBuilder", "..\VotriteSpeechBuilder\VotriteSpeechBuilder.csproj", "{233EEF79-2046-4001-BC8E-180AD7B5CFDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Debug|x86.ActiveCfg = Debug|x86
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Debug|x86.Build.0 = Debug|x86
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Release|Any CPU.ActiveCfg = Release|x86
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Release|x86.ActiveCfg = Release|x86
+		{20C0375F-287B-4926-B0E8-0973580065AA}.Release|x86.Build.0 = Release|x86
+		{0BB042EF-511D-42E8-A821-D1B280AE5650}.Debug|Any CPU.ActiveCfg = Debug
+		{0BB042EF-511D-42E8-A821-D1B280AE5650}.Debug|x86.ActiveCfg = Debug
+		{0BB042EF-511D-42E8-A821-D1B280AE5650}.Release|Any CPU.ActiveCfg = Release
+		{0BB042EF-511D-42E8-A821-D1B280AE5650}.Release|x86.ActiveCfg = Release
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6431590-2EB2-4377-BEA3-7EAB2D668D23}.Release|x86.Build.0 = Release|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Debug|x86.Build.0 = Debug|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Release|x86.ActiveCfg = Release|Any CPU
+		{233EEF79-2046-4001-BC8E-180AD7B5CFDF}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DE6944E-313F-498F-BEB6-6DC611385C00}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = VotRite.csproj
+		Policies = $0
+		$0.VersionControlPolicy = $1
+		$1.inheritsSet = Mono
+		$0.ChangeLogPolicy = $2
+		$2.UpdateMode = None
+		$2.MessageStyle = $3
+		$3.LineAlign = 0
+		$2.inheritsSet = Mono
+		$0.StandardHeader = $4
+		$4.Text = 
+		$4.inheritsSet = Apache2License
+		description = The sofwtare for the VotRite voting machines
+	EndGlobalSection
+EndGlobal
