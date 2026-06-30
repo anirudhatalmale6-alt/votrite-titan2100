@@ -220,16 +220,7 @@ namespace VotRite
 	    {
             if (AppManager.Instance.ActiveScreens.Count > 0)
                 AppManager.Instance.GetActiveScreen().HandleMouseUp();
-            if (AppManager.Instance.ballot != null)
-            {
-                if (AppManager.Instance.ballot.BallotMode == Session.BallotModes.Audio)
-                {
-                    if (e.Button == MouseButtons.Left)
-                        AppManager.Instance.mouseButton = AppManager.MouseButton.left;
-                    else
-                        AppManager.Instance.mouseButton = AppManager.MouseButton.right;
-                }
-            }
+            // Mouse input disabled in Audio mode - keyboard only
         }       
 
         private void InitializeComponent()
