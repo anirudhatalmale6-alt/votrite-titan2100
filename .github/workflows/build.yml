@@ -1,0 +1,27 @@
+name: Build VotRite V24.2
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore VotRiteEncrpted.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release x86
+        run: msbuild VotRite.csproj /p:Configuration=Release /p:Platform=x86 /p:OutputPath=bin\Release
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: VotRite-V24.2-Release
+          path: bin/Release/
