@@ -19,11 +19,9 @@ jobs:
       - name: Download CommonFiles
         shell: powershell
         run: |
-          gh release download v24.2 --pattern CommonFiles.zip --repo anirudhatalmale6-alt/votrite-titan2100
-          mkdir -p bin\Debug
+          Invoke-WebRequest -Uri "https://github.com/anirudhatalmale6-alt/votrite-titan2100/releases/download/v24.2/CommonFiles.zip" -OutFile CommonFiles.zip
+          New-Item -ItemType Directory -Path bin\Debug -Force
           Expand-Archive CommonFiles.zip -DestinationPath bin\Debug -Force
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
