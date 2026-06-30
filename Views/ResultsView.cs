@@ -44,6 +44,8 @@ namespace VotRite.Views
 
         private RaceViewOptions raceViewOptions = null;
         private bool _hasScroll = false;
+        private Timer _refreshTimer;
+        private VrLabel lblLastUpdated;
 
         public ResultsView(ResultsModel m, ResultsController c)
             : base(m, c)
@@ -81,9 +83,11 @@ namespace VotRite.Views
         {
             if (disposing)
             {
+                if (_refreshTimer != null) { _refreshTimer.Stop(); _refreshTimer.Dispose(); }
                 _timer.Dispose();
                 _textsToSpeak.Clear();
 
+                if (lblLastUpdated != null) lblLastUpdated.Dispose();
                 if (lblBallotName != null) lblBallotName.Dispose();
                 if (lblBallotTitle != null) lblBallotTitle.Dispose();
                 if (lblBallotAddress != null) lblBallotAddress.Dispose();
@@ -1144,6 +1148,26 @@ namespace VotRite.Views
 			}
 			this._textsToSpeak = base.GetAllTexts(true, false, false);
 			this.SetNavigation();
+
+			lblLastUpdated = new VrLabel()
+			{
+				Width = 400,
+				Height = 30,
+				Left = this.container.Left + 30,
+				Top = 30,
+				Text = "Live Results - Updated: " + DateTime.Now.ToString("HH:mm:ss"),
+				TextSize = 10,
+				ForeColor = "#0066cc",
+				TextAlign = "left-middle"
+			};
+			if (!lblLastUpdated.Resized)
+				lblLastUpdated.Resize(this.vModel.Scale);
+			vModel.Definition.ScreenObjects.Add(lblLastUpdated);
+
+			_refreshTimer = new Timer() { Interval = 5000 };
+			_refreshTimer.Tick += RefreshResults;
+			_refreshTimer.Start();
+
 			if (this._hasScroll)
 			{
 				if (this.container.CreateScroll(this.vModel, top - this.container.Top))
@@ -1201,6 +1225,40 @@ namespace VotRite.Views
         public override void Update(ISubject subj)
         {
             //Logger.Instance.Write("contest view updated");
+        }
+
+        private void RefreshResults(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = string.Concat("select cnt from cast where ballotId=", this.vModel.Ballot.Id);
+                int totalVotes = Helper.Cast(DataManager.VotingResultsDataInstance.GetScalarData(str), 0);
+                str = string.Concat("select bid, cid, did, cand_name, vdate, cnt, slate_id, pid from counter where bid=", this.vModel.Ballot.Id, ";");
+                DataTable dataV2 = DataManager.VotingResultsDataInstance.GetDataV2(str);
+
+                foreach (ScreenObject obj in container.Controls)
+                {
+                    if (obj == null || obj.Name == null) continue;
+
+                    if (obj.Name.StartsWith("lblTotalVotes_"))
+                    {
+                        obj.Text = totalVotes.ToString();
+                        obj.GraphicsState = ScreenObject.ScreenObjectGraphicsState.CHANGED;
+                    }
+                    else if (dataV2 != null && obj.Tag != null && obj.Tag == base.Name)
+                    {
+                    }
+                }
+
+                if (lblLastUpdated != null)
+                {
+                    lblLastUpdated.Text = "Live Results - Updated: " + DateTime.Now.ToString("HH:mm:ss");
+                    lblLastUpdated.GraphicsState = ScreenObject.ScreenObjectGraphicsState.CHANGED;
+                }
+
+                Window.Instance.Invalidate();
+            }
+            catch (Exception) { }
         }
 
         private void SetNavigation()

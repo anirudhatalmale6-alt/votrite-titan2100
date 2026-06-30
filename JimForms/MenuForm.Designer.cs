@@ -358,7 +358,7 @@ namespace VotRite.JimForms
             this.lblShowResult.Name = "lblShowResult";
             this.lblShowResult.Size = new System.Drawing.Size(352, 31);
             this.lblShowResult.TabIndex = 3;
-            this.lblShowResult.Text = "SHOW LAST RESULT";
+            this.lblShowResult.Text = "VIEW LIVE RESULTS";
             this.lblShowResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblShowResult.Click += new System.EventHandler(this.lblShowResult_Click);
             this.lblShowResult.MouseLeave += new System.EventHandler(this.lblVoting_MouseLeave);
