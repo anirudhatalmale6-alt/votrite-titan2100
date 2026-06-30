@@ -26,11 +26,26 @@ namespace VotRite.Controllers
 			model = m;
 		}
 		
-		public override void HandleKey(string key) 
-		{  
+		public override void HandleKey(string key)
+		{
+			int index = -1;
 			switch (key)
 			{
+				case "D1": case "NumPad1": index = 0; break;
+				case "D2": case "NumPad2": index = 1; break;
+				case "D3": case "NumPad3": index = 2; break;
+				case "D4": case "NumPad4": index = 3; break;
+				case "D5": case "NumPad5": index = 4; break;
+				case "D6": case "NumPad6": index = 5; break;
+				case "D7": case "NumPad7": index = 6; break;
+				case "D8": case "NumPad8": index = 7; break;
+				case "D9": case "NumPad9": index = 8; break;
+				case "D0": case "NumPad0": index = 9; break;
 				default: break;
+			}
+			if (index >= 0 && index < model.LocalesList.Count)
+			{
+				AppManager.Instance.SetLocale(model.LocalesList[index]);
 			}
 		}
 		

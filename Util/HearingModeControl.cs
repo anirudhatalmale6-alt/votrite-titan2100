@@ -302,8 +302,8 @@ namespace VotRite.Util
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             timer.Stop();
-            string yescmd = "Left click on mouse";//"Say yes";
-            string nocmd = "Right click on mouse";//"Say no";
+            string yescmd = "Press Enter";//"Left click on mouse";
+            string nocmd = "Press Right Arrow";//"Right click on mouse";
             try
             {
                 string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "speechout.txt");
@@ -472,6 +472,16 @@ namespace VotRite.Util
                 
 
                     string word = "";
+
+                // Map keyboard input to mouseButton so existing logic handles both
+                if (AppManager.Instance.keyboardButton != AppManager.KeyboardButton.none)
+                {
+                    if (AppManager.Instance.keyboardButton == AppManager.KeyboardButton.select)
+                        AppManager.Instance.mouseButton = AppManager.MouseButton.left;
+                    else if (AppManager.Instance.keyboardButton == AppManager.KeyboardButton.next)
+                        AppManager.Instance.mouseButton = AppManager.MouseButton.right;
+                    AppManager.Instance.keyboardButton = AppManager.KeyboardButton.none;
+                }
 
                 if (AppManager.Instance.mouseButton != AppManager.MouseButton.none && _listeningmode == listeningmode.waitingvoter)
                 {

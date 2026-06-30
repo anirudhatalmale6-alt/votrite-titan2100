@@ -120,6 +120,13 @@ namespace VotRite
         }
 
         public MouseButton mouseButton = MouseButton.none;
+
+        public enum KeyboardButton
+        {
+            none, select, next
+        }
+
+        public KeyboardButton keyboardButton = KeyboardButton.none;
         public bool reviewOnConfirm = true;
         public bool headerInRecordImage = false;
 

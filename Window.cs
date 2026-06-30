@@ -137,8 +137,28 @@ namespace VotRite
                         break;
                     //case Keys.F5: AppManager.Instance.ShowSoftPinpad("main", true); break;
                     default:
-                        //if (AppManager.Instance.ballot.BallotMode != Session.BallotModes.Audio)
-                        //    AppManager.Instance.GetActiveScreen().HandleKey(evt.KeyCode.ToString());
+                        if (AppManager.Instance.ballot.BallotMode == Session.BallotModes.Audio)
+                        {
+                            switch (evt.KeyCode)
+                            {
+                                case Keys.Enter:
+                                case Keys.Space:
+                                    AppManager.Instance.keyboardButton = AppManager.KeyboardButton.select;
+                                    break;
+                                case Keys.Right:
+                                case Keys.Down:
+                                case Keys.Tab:
+                                    AppManager.Instance.keyboardButton = AppManager.KeyboardButton.next;
+                                    break;
+                                default:
+                                    AppManager.Instance.GetActiveScreen().HandleKey(evt.KeyCode.ToString());
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            AppManager.Instance.GetActiveScreen().HandleKey(evt.KeyCode.ToString());
+                        }
                         break;
                 }
             }
