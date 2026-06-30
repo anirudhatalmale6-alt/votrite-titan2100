@@ -11,6 +11,17 @@ jobs:
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
 
+      - name: Install .NET Framework 4.0 targeting pack
+        shell: powershell
+        run: |
+          choco install netfx-4.0.3319-developerpack -y --no-progress 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Trying alternative: retargeting to 4.6.2"
+            $content = Get-Content VotRite.csproj -Raw
+            $content = $content -replace 'v4\.0', 'v4.6.2'
+            Set-Content VotRite.csproj $content
+          }
+
       - name: Restore NuGet packages
         run: nuget restore VotRiteEncrpted.sln
 
