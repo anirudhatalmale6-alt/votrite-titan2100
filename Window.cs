@@ -132,7 +132,7 @@ namespace VotRite
                         else
                         {
                             if (JimForms.MenuForm.adminaccess())
-                                Close();
+                                AppManager.Instance.ShowSoftPinpad("main", true);
                         }
                         break;
                     //case Keys.F5: AppManager.Instance.ShowSoftPinpad("main", true); break;
