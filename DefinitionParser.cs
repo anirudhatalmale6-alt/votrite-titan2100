@@ -99,30 +99,29 @@ namespace VotRite
 
             var contestsList = Contest.GetContests(ContestTypes.All, ballot.Id, string.Format("{0} desc, {1}", Contest.TypeField, Contest.IdField));
             ContestDefinition conDef = null;
-            
-            //foreach (var contest in contestsList)
-            //{
-            //    conDef = new ContestDefinition
-            //        {
-            //            Id = contest.Id,
-            //            Name = contest.GenericName,
-            //            Choice = "CONTEST CHOICE - NOT FROM DB",
-            //            MinSelection = contest.MinVotes > 0 ? contest.MinVotes : 0,
-            //            MaxSelection = contest.MaxVotes > 0 ? contest.MaxVotes : 1,
-            //            Type = contest.Type,
-            //            Group = contest.Id,
-            //            GroupName = "CONTEST GROUP NAME - NOT FROM DB",
-            //            Title = "CONTEST TITLE - NOT FROM DB",
-            //            CandidatesList = contest.CandidatesList,
-            //            Propositions = contest is MassProposition ? (contest as MassProposition).Propositions : null,
-            //            MaxWriteins = contest.MaxWriteins,
-            //            CountyId = contest.CountyId
-            //        };
-            //   // DataDefinition
 
-            //    ballotDefinition.ContestsList.Add(conDef);
-                   
-            //}
+            foreach (var contest in contestsList)
+            {
+                conDef = new ContestDefinition
+                    {
+                        Id = contest.Id,
+                        Name = contest.GenericName,
+                        Choice = "CONTEST CHOICE - NOT FROM DB",
+                        MinSelection = contest.MinVotes > 0 ? contest.MinVotes : 0,
+                        MaxSelection = contest.MaxVotes > 0 ? contest.MaxVotes : 1,
+                        Type = contest.Type,
+                        Group = contest.Id,
+                        GroupName = "CONTEST GROUP NAME - NOT FROM DB",
+                        Title = "CONTEST TITLE - NOT FROM DB",
+                        CandidatesList = contest.CandidatesList,
+                        Propositions = contest is MassProposition ? (contest as MassProposition).Propositions : null,
+                        MaxWriteins = contest.MaxWriteins,
+                        CountyId = contest.CountyId
+                    };
+
+                ballotDefinition.ContestsList.Add(conDef);
+
+            }
 
             return ballotDefinition;
         }
@@ -145,26 +144,26 @@ namespace VotRite
 
             var contestsList = Contest.GetContests(ContestTypes.All, ballotDefinition.Id, string.Format("{0} desc, {1}", Contest.TypeField, Contest.IdField), partyId, countyId);
 
-            //foreach (var contest in contestsList)
-            //{
-            //    list_cd.Add(
-            //        new ContestDefinition
-            //        {
-            //            Id = contest.Id,
-            //            Name = contest.GenericName,
-            //            Choice = "CONTEST CHOICE - NOT FROM DB",
-            //            MinSelection = contest.MinVotes > 0 ? contest.MinVotes : 0,
-            //            MaxSelection = contest.MaxVotes > 0 ? contest.MaxVotes : 1,
-            //            Type = contest.Type,
-            //            Group = contest.Id,
-            //            GroupName = "CONTEST GROUP NAME - NOT FROM DB",
-            //            Title = "CONTEST TITLE - NOT FROM DB",
-            //            CandidatesList = contest.CandidatesList,
-            //            Propositions = contest is MassProposition ? (contest as MassProposition).Propositions : null,
-            //            MaxWriteins = contest.MaxWriteins,
-            //            CountyId = contest.CountyId
-            //        });
-            //}
+            foreach (var contest in contestsList)
+            {
+                list_cd.Add(
+                    new ContestDefinition
+                    {
+                        Id = contest.Id,
+                        Name = contest.GenericName,
+                        Choice = "CONTEST CHOICE - NOT FROM DB",
+                        MinSelection = contest.MinVotes > 0 ? contest.MinVotes : 0,
+                        MaxSelection = contest.MaxVotes > 0 ? contest.MaxVotes : 1,
+                        Type = contest.Type,
+                        Group = contest.Id,
+                        GroupName = "CONTEST GROUP NAME - NOT FROM DB",
+                        Title = "CONTEST TITLE - NOT FROM DB",
+                        CandidatesList = contest.CandidatesList,
+                        Propositions = contest is MassProposition ? (contest as MassProposition).Propositions : null,
+                        MaxWriteins = contest.MaxWriteins,
+                        CountyId = contest.CountyId
+                    });
+            }
             return list_cd;
         }
 
