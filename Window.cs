@@ -135,7 +135,10 @@ namespace VotRite
                                 AppManager.Instance.ShowSoftPinpad("main", true);
                         }
                         break;
-                    //case Keys.F5: AppManager.Instance.ShowSoftPinpad("main", true); break;
+                    case Keys.F5:
+                        if (JimForms.MenuForm.adminaccess())
+                            AppManager.Instance.ShowResults();
+                        break;
                     default:
                         if (AppManager.Instance.ballot.BallotMode == Session.BallotModes.Audio)
                         {
