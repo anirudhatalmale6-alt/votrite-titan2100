@@ -1545,7 +1545,7 @@ namespace VotRite
             
             if (ballot != null)
             {
-                if (ballot.ElectionType == ElectionTypes.ranking_choice || this.ballot.ContestsList[0].Type == ContestTypes.V)
+                if (ballot.ElectionType == ElectionTypes.ranking_choice || (this.ballot.ContestsList.Count > 0 && this.ballot.ContestsList[0].Type == ContestTypes.V))
                 {
                     SetScreen("RankingChoice");
                     return;
