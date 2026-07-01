@@ -467,19 +467,16 @@ namespace VotRiteBallotDataManager.AppCode
 
         public static void UpdateMachineValue(string machineValue)
         {
-            var updated = DataManager.VotingContentDataInstance.SetData(string.Format("UPDATE {0} SET {1}='{2}'",
+            DataManager.VotingContentDataInstance.SetData(string.Format("UPDATE {0} SET {1}='{2}'",
                                                                                        TableName,
                                                                                        MachineField,
                                                                                      VotriteCrypto.Encrypt( Helper.EscapeStringData(
                                                                                            machineValue))));
-
-            if (!updated)
-                throw new Exception("Can't update Machine field in data base.");
         }
 
         public static void UpdateMachineValue_Location(string machineValue, string locationValue)
         {
-            var updated = DataManager.VotingContentDataInstance.SetData(string.Format("UPDATE {0} SET {1}='{2}',{3}='{4}'",
+            DataManager.VotingContentDataInstance.SetData(string.Format("UPDATE {0} SET {1}='{2}',{3}='{4}'",
                                                                                        TableName,
                                                                                        MachineField,
                                                                                      VotriteCrypto.Encrypt(Helper.EscapeStringData(
@@ -487,9 +484,6 @@ namespace VotRiteBallotDataManager.AppCode
                                                                                        VotriteCrypto.Encrypt(LocationField),
                                                                                        VotriteCrypto.Encrypt(locationValue)
                                                                                        ));
-
-            if (!updated)
-                throw new Exception("Can't update Machine field in data base.");
         }
 
         public static bool UpdateBallotDefault(int BallotID)
