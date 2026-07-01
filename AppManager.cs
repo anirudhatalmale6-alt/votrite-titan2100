@@ -1572,6 +1572,14 @@ namespace VotRite
                 }
             }
 
+            if (ballot != null && ballot.ContestsList.Count == 0)
+            {
+                MessageBox.Show("No contests configured in this ballot. Please use Edit Ballot to add contests before starting a voting session.",
+                    "No Contests", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                SetScreen("initial");
+                return;
+            }
+
             SetScreen("contest");
 
             // SetScreen("remotePollWorker");
